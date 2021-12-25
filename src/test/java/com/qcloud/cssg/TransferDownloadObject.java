@@ -14,7 +14,7 @@ import com.qcloud.cos.transfer.*;
 import com.qcloud.cos.model.lifecycle.*;
 import com.qcloud.cos.model.inventory.*;
 import com.qcloud.cos.model.inventory.InventoryFrequency;
-
+import com.qcloud.util.Constants;
 import com.qcloud.util.FileUtil;
 
 import java.io.*;
@@ -40,7 +40,7 @@ public class TransferDownloadObject {
 
     private String uploadId;
     private List<PartETag> partETags;
-    private String localFilePath;
+    private String localFilePath = "E:\\test.jpg";
 
     /**
      * 高级接口下载对象
@@ -48,8 +48,8 @@ public class TransferDownloadObject {
     public void transferDownloadObject() throws InterruptedException, IOException, NoSuchAlgorithmException {
         //.cssg-snippet-body-start:[transfer-download-object]
         // Bucket 的命名格式为 BucketName-APPID ，此处填写的存储桶名称必须为此格式
-        String bucketName = "examplebucket-1250000000";
-        String key = "exampleobject";
+        String bucketName = Constants.BUCKETID;
+        String key = "mail.huwing.cn/245mm日用/10片/245白底图.jpg";
         File localDownFile = new File(localFilePath);
         GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, key);
         // 限流使用的单位是bit/s, 这里设置下载带宽限制为 10MB/s
@@ -65,12 +65,13 @@ public class TransferDownloadObject {
     // .cssg-methods-pragma
 
     private void initClient() {
+    	
         String secretId = "COS_SECRETID";
         String secretKey = "COS_SECRETKEY";
         COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
         // 2 设置 bucket 的区域, COS 地域的简称请参照 https://cloud.tencent.com/document/product/436/6224
         // clientConfig 中包含了设置 region, https(默认 http), 超时, 代理等 set 方法, 使用可参见源码或者常见问题 Java SDK 部分。
-        Region region = new Region("COS_REGION");
+        Region region = new Region(Constants.REGION);
         ClientConfig clientConfig = new ClientConfig(region);
         // 3 生成 cos 客户端。
         this.cosClient = new COSClient(cred, clientConfig);

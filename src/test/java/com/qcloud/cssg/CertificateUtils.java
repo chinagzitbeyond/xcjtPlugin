@@ -16,50 +16,51 @@ import com.tencentcloudapi.sts.v20180813.models.AssumeRoleResponse;
 
 /**
  * @author Mr Yuan
- * @deprecated ÌÚÑ¶ÔÆÁÙÊ±Æ¾Ö¤¹¤¾ßÀà
+ * @deprecated ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½ï¿½Ê±Æ¾Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  */
 public class CertificateUtils {
-	
+
 	/**
-	 * @deprecated È¡µÄÁªºÏÆ¾Ö¤ÊµÌå
+	 * @deprecated È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¾Ö¤Êµï¿½ï¿½
 	 * @return FederationBean
 	 */
 	public static FederationBean getFederation() {
-		
-		try{
 
-            // ÊµÀý»¯Ò»¸öÈÏÖ¤¶ÔÏó£¬Èë²ÎÐèÒª´«ÈëÌÚÑ¶ÔÆÕË»§secretId£¬secretKey,´Ë´¦»¹Ðè×¢ÒâÃÜÔ¿¶ÔµÄ±£ÃÜ
-            // ÃÜÔ¿¿ÉÇ°Íùhttps://console.cloud.tencent.com/cam/capiÍøÕ¾½øÐÐ»ñÈ¡
-            Credential cred = new Credential(Constants.SECRETID, Constants.SECRETKEY);
-            // ÊµÀý»¯Ò»¸öhttpÑ¡Ïî£¬¿ÉÑ¡µÄ£¬Ã»ÓÐÌØÊâÐèÇó¿ÉÒÔÌø¹ý
-            HttpProfile httpProfile = new HttpProfile();
-            httpProfile.setEndpoint(Constants.ENDPOINTURL);
-            // ÊµÀý»¯Ò»¸öclientÑ¡Ïî£¬¿ÉÑ¡µÄ£¬Ã»ÓÐÌØÊâÐèÇó¿ÉÒÔÌø¹ý
-            ClientProfile clientProfile = new ClientProfile();
-            clientProfile.setHttpProfile(httpProfile);
-            // ÊµÀý»¯ÒªÇëÇó²úÆ·µÄclient¶ÔÏó,clientProfileÊÇ¿ÉÑ¡µÄ
-            StsClient client = new StsClient(cred, Constants.REGION, clientProfile);
-            // ÊµÀý»¯Ò»¸öÇëÇó¶ÔÏó,Ã¿¸ö½Ó¿Ú¶¼»á¶ÔÓ¦Ò»¸örequest¶ÔÏó
-            AssumeRoleRequest req = new AssumeRoleRequest();
-            req.setRoleArn(Constants.ROLEARN);
-            req.setRoleSessionName(Constants.ROLESESSIONNAME);
-            req.setDurationSeconds(Constants.DURATIONSECONDS);
-            // ·µ»ØµÄrespÊÇÒ»¸öAssumeRoleResponseµÄÊµÀý£¬ÓëÇëÇó¶ÔÏó¶ÔÓ¦
-            AssumeRoleResponse resp = client.AssumeRole(req);
+		try {
 
-            // Êä³öjson¸ñÊ½µÄ×Ö·û´®»Ø°ü
-            String jsonStr = AssumeRoleResponse.toJsonString(resp);
-            if(!TextUtils.isEmpty(jsonStr)) {
-                FederationBean entity = JSONObject.parseObject(AssumeRoleResponse.toJsonString(resp), FederationBean.class);
-                System.out.println(jsonStr);
-                return entity;
-            }
-            
-        } catch (TencentCloudSDKException e) {
-            System.out.println(e.toString());
-        }
-		
+			// Êµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½Ë»ï¿½secretIdï¿½ï¿½secretKey,ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ÔµÄ±ï¿½ï¿½ï¿½
+			// ï¿½ï¿½Ô¿ï¿½ï¿½Ç°ï¿½ï¿½https://console.cloud.tencent.com/cam/capiï¿½ï¿½Õ¾ï¿½ï¿½ï¿½Ð»ï¿½È¡
+			Credential cred = new Credential(Constants.SECRETID, Constants.SECRETKEY);
+			// Êµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½httpÑ¡ï¿½î£¬ï¿½ï¿½Ñ¡ï¿½Ä£ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			HttpProfile httpProfile = new HttpProfile();
+			httpProfile.setEndpoint(Constants.ENDPOINTURL);
+			// Êµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½clientÑ¡ï¿½î£¬ï¿½ï¿½Ñ¡ï¿½Ä£ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			ClientProfile clientProfile = new ClientProfile();
+			clientProfile.setHttpProfile(httpProfile);
+			// Êµï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½clientï¿½ï¿½ï¿½ï¿½,clientProfileï¿½Ç¿ï¿½Ñ¡ï¿½ï¿½
+			StsClient client = new StsClient(cred, Constants.REGION, clientProfile);
+			// Êµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,Ã¿ï¿½ï¿½ï¿½Ó¿Ú¶ï¿½ï¿½ï¿½ï¿½Ó¦Ò»ï¿½ï¿½requestï¿½ï¿½ï¿½ï¿½
+			AssumeRoleRequest req = new AssumeRoleRequest();
+			req.setRoleArn(Constants.ROLEARN);
+			req.setRoleSessionName(Constants.ROLESESSIONNAME);
+			req.setDurationSeconds((long) Constants.DURATIONSECONDS);
+			// ï¿½ï¿½ï¿½Øµï¿½respï¿½ï¿½Ò»ï¿½ï¿½AssumeRoleResponseï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦
+			AssumeRoleResponse resp = client.AssumeRole(req);
+
+			// ï¿½ï¿½ï¿½jsonï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ø°ï¿½
+			String jsonStr = AssumeRoleResponse.toJsonString(resp);
+			if (!TextUtils.isEmpty(jsonStr)) {
+				FederationBean entity = JSONObject.parseObject(AssumeRoleResponse.toJsonString(resp),
+						FederationBean.class);
+				System.out.println(jsonStr);
+				return entity;
+			}
+
+		} catch (TencentCloudSDKException e) {
+			System.out.println(e.toString());
+		}
+
 		return null;
 	}
 
@@ -69,7 +70,7 @@ public class CertificateUtils {
 		CredentialsBean initEntity = entity.getCredentials();
 		System.out.println(entity.getExpiredTime());
 		System.out.println(initEntity.getTmpSecretId());
-		
+
 	}
 
 }

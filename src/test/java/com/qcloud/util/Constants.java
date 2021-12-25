@@ -9,6 +9,11 @@ public class Constants {
 	public static String REGION = "ap-shanghai";
 	public static String ROLEARN = "qcs::cam::uin/100006371297:role/4611686018431013349";
 	public static String ROLESESSIONNAME = "xcjt";
-	public static long DURATIONSECONDS = 1800L;
+	public static int DURATIONSECONDS = 1800;
+	public static String BUCKETID = "dwh-1257583875";
+	
+	
+	
+	
 
 }
