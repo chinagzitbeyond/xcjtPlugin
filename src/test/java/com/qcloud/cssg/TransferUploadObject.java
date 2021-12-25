@@ -114,6 +114,8 @@ public class TransferUploadObject {
         transferManagerConfiguration.setMinimumUploadPartSize(10 * 1024 * 1024);
         transferManager.setConfiguration(transferManagerConfiguration);
     }
+    
+    
 
     public static void main(String[] args) throws InterruptedException, IOException,        NoSuchAlgorithmException {
         TransferUploadObject example = new TransferUploadObject();
