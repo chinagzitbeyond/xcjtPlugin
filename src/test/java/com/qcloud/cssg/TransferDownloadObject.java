@@ -16,6 +16,7 @@ import com.qcloud.cos.model.inventory.*;
 import com.qcloud.cos.model.inventory.InventoryFrequency;
 import com.qcloud.util.Constants;
 import com.qcloud.util.FileUtil;
+import com.tencent.cloud.Response;
 
 import java.io.*;
 import java.security.KeyPairGenerator;
@@ -40,7 +41,7 @@ public class TransferDownloadObject {
 
     private String uploadId;
     private List<PartETag> partETags;
-    private String localFilePath = "E:\\test.jpg";
+    private String localFilePath = "E:/download/test2.jpg";
 
     /**
      * 高级接口下载对象
@@ -50,6 +51,7 @@ public class TransferDownloadObject {
         // Bucket 的命名格式为 BucketName-APPID ，此处填写的存储桶名称必须为此格式
         String bucketName = Constants.BUCKETID;
         String key = "mail.huwing.cn/245mm日用/10片/245白底图.jpg";
+//        String key = "mail.huwing.cn/100抽（一包）";
         File localDownFile = new File(localFilePath);
         GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, key);
         // 限流使用的单位是bit/s, 这里设置下载带宽限制为 10MB/s
@@ -66,15 +68,17 @@ public class TransferDownloadObject {
 
     private void initClient() {
     	
-        String secretId = "COS_SECRETID";
-        String secretKey = "COS_SECRETKEY";
-        COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
+
+//      String secretId =  Constants.SECRETID;
+//      String secretKey = Constants.SECRETKEY;
+//        COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
         // 2 设置 bucket 的区域, COS 地域的简称请参照 https://cloud.tencent.com/document/product/436/6224
         // clientConfig 中包含了设置 region, https(默认 http), 超时, 代理等 set 方法, 使用可参见源码或者常见问题 Java SDK 部分。
-        Region region = new Region(Constants.REGION);
-        ClientConfig clientConfig = new ClientConfig(region);
+//        Region region = new Region("ap-guangzhou");
+//        ClientConfig clientConfig = new ClientConfig(region);
         // 3 生成 cos 客户端。
-        this.cosClient = new COSClient(cred, clientConfig);
+//        this.cosClient = new COSClient(cred, clientConfig);
+        this.cosClient = ServiceCredential.useTempInitCredential();
 
         // 高级接口传输类
         // 线程池大小，建议在客户端与 COS 网络充足（例如使用腾讯云的 CVM，同地域上传 COS）的情况下，设置成16或32即可，可较充分的利用网络资源
@@ -88,7 +92,7 @@ public class TransferDownloadObject {
         transferManagerConfiguration.setMinimumUploadPartSize(10 * 1024 * 1024);
         transferManager.setConfiguration(transferManagerConfiguration);
     }
-
+    
     public static void main(String[] args) throws InterruptedException, IOException,        NoSuchAlgorithmException {
         TransferDownloadObject example = new TransferDownloadObject();
         example.initClient();

@@ -11,6 +11,7 @@ public class Constants {
 	public static String ROLESESSIONNAME = "xcjt";
 	public static int DURATIONSECONDS = 1800;
 	public static String BUCKETID = "dwh-1257583875";
+	public static String BUCKETREGION = "ap-guangzhou";
 	
 	
 	
