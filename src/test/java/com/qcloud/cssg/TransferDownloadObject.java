@@ -92,7 +92,13 @@ public class TransferDownloadObject {
         transferManagerConfiguration.setMinimumUploadPartSize(10 * 1024 * 1024);
         transferManager.setConfiguration(transferManagerConfiguration);
     }
-    
+    /**
+     * @deprecated 永久秘钥，临时秘钥获取腾讯云图片成功
+     * @param args
+     * @throws InterruptedException
+     * @throws IOException
+     * @throws NoSuchAlgorithmException
+     */
     public static void main(String[] args) throws InterruptedException, IOException,        NoSuchAlgorithmException {
         TransferDownloadObject example = new TransferDownloadObject();
         example.initClient();

@@ -14,7 +14,7 @@ import com.qcloud.cos.transfer.*;
 import com.qcloud.cos.model.lifecycle.*;
 import com.qcloud.cos.model.inventory.*;
 import com.qcloud.cos.model.inventory.InventoryFrequency;
-
+import com.qcloud.util.Constants;
 import com.qcloud.util.FileUtil;
 
 import java.io.*;
@@ -40,36 +40,36 @@ public class TransferUploadObject {
 
     private String uploadId;
     private List<PartETag> partETags;
-    private String localFilePath;
+    private String localFilePath = "E:/download/test.jpg";
 
     /**
      * 高级接口上传对象
      */
     public void transferUploadFile() throws InterruptedException, IOException, NoSuchAlgorithmException {
         //.cssg-snippet-body-start:[transfer-upload-file]
-        // 示例1：
+ /**       // 示例1：测试通过
         // 存储桶的命名格式为 BucketName-APPID，此处填写的存储桶名称必须为此格式
-        String bucketName = "examplebucket-1250000000";
-        String key = "exampleobject";
+        String bucketName = Constants.BUCKETID;
+        String key = "mail.huwing.cn/245mm日用/10片/test.jpg";
         File localFile = new File(localFilePath);
         PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, localFile);
         // 本地文件上传
         Upload upload = transferManager.upload(putObjectRequest);
         // 等待传输结束（如果想同步的等待上传结束，则调用 waitForCompletion）
         UploadResult uploadResult = upload.waitForUploadResult();
-        
-        // 示例2：对大于分块大小的文件，使用断点续传
+**/       
+        // 示例2：对大于分块大小的文件，使用断点续传 测试通过
         // 步骤一：获取 PersistableUpload
-        bucketName = "examplebucket-1250000000";
-        key = "exmpleobject";
-        localFile = new File("exmpleobject");
-        putObjectRequest = new PutObjectRequest(bucketName, key, localFile);
+    	String bucketName = Constants.BUCKETID;
+    	String key = "mail.huwing.cn/245mm日用/10片/test2.jpg";
+        File localFile = new File(localFilePath);
+        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, localFile);
         // 本地文件上传
         PersistableUpload persistableUpload = null;
         // 设置 SDK 内部简单上传或每个分块上传速度为8MB/s，单位：bit/s
         // 注意：大于分块阈值的 File 类型数据上传，会并发多分块上传，需要调整线程池大小，以控制上传速度
         putObjectRequest.setTrafficLimit(64*1024*1024);
-        upload = transferManager.upload(putObjectRequest);
+        Upload upload = transferManager.upload(putObjectRequest);
         // 等待"分块上传初始化"完成，并获取到 persistableUpload （包含 uploadId 等）
         while(persistableUpload == null) {
             persistableUpload = upload.getResumeableMultipartUploadId();
@@ -80,7 +80,7 @@ public class TransferUploadObject {
         // 步骤二：当由于网络等问题，大文件的上传被中断，则根据 PersistableUpload 恢复该文件的上传，只上传未上传的分块
         Upload newUpload = transferManager.resumeUpload(persistableUpload);
          // 等待传输结束（如果想同步的等待上传结束，则调用 waitForCompletion）
-        uploadResult = newUpload.waitForUploadResult();
+        UploadResult uploadResult = newUpload.waitForUploadResult();
         // 服务端计算得到的对象 CRC64
         String crc64Ecma = uploadResult.getCrc64Ecma();
         
@@ -90,15 +90,17 @@ public class TransferUploadObject {
     // .cssg-methods-pragma
 
     private void initClient() {
-        String secretId = "COS_SECRETID";
-        String secretKey = "COS_SECRETKEY";
-        COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
-        // 2 设置 bucket 的区域, COS 地域的简称请参照 https://cloud.tencent.com/document/product/436/6224
-        // clientConfig 中包含了设置 region, https(默认 http), 超时, 代理等 set 方法, 使用可参见源码或者常见问题 Java SDK 部分。
-        Region region = new Region("COS_REGION");
-        ClientConfig clientConfig = new ClientConfig(region);
-        // 3 生成 cos 客户端。
-        this.cosClient = new COSClient(cred, clientConfig);
+//        String secretId = "COS_SECRETID";
+//        String secretKey = "COS_SECRETKEY";
+//        COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
+//        // 2 设置 bucket 的区域, COS 地域的简称请参照 https://cloud.tencent.com/document/product/436/6224
+//        // clientConfig 中包含了设置 region, https(默认 http), 超时, 代理等 set 方法, 使用可参见源码或者常见问题 Java SDK 部分。
+//        Region region = new Region("COS_REGION");
+//        ClientConfig clientConfig = new ClientConfig(region);
+//        // 3 生成 cos 客户端。
+//        this.cosClient = new COSClient(cred, clientConfig);
+        this.cosClient = ServiceCredential.useTempInitCredential();
+
 
         // 高级接口传输类
         // 线程池大小，建议在客户端与 COS 网络充足（例如使用腾讯云的 CVM，同地域上传 COS）的情况下，设置成16或32即可，可较充分的利用网络资源
