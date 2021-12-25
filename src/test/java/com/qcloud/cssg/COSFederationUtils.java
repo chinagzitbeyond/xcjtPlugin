@@ -60,9 +60,9 @@ public class COSFederationUtils {
             config.put("allowActions", allowActions);
             Response response = CosStsClient.getCredential(config);
             if(null != response) {
-            	System.out.println(response.credentials.tmpSecretId);
+           /** 	System.out.println(response.credentials.tmpSecretId);
                 System.out.println(response.credentials.tmpSecretKey);
-                System.out.println(response.credentials.sessionToken);
+                System.out.println(response.credentials.sessionToken);**/
                 return response;
             }
            
