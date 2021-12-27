@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Built-By: PHP￦ﾘﾯ￤ﾸﾖ￧ﾕﾌ￤ﾸﾊ￦ﾜﾀ￥ﾥﾽ￧ﾚﾄ￨ﾯﾭ￨ﾨﾀ
+Build-Jdk: 17.0.1
+Created-By: Maven Integration for Eclipse
+
