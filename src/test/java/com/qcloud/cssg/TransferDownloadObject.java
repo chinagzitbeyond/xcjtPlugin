@@ -46,6 +46,27 @@ public class TransferDownloadObject {
     /**
      * 高级接口下载对象
      */
+    public void transferDownloadObject(String localFilePath) throws InterruptedException, IOException, NoSuchAlgorithmException {
+        //.cssg-snippet-body-start:[transfer-download-object]
+        // Bucket 的命名格式为 BucketName-APPID ，此处填写的存储桶名称必须为此格式
+        String bucketName = Constants.BUCKETID;
+        String key = "mail.huwing.cn/245mm日用/10片/245白底图.jpg";
+//        String key = "mail.huwing.cn/100抽（一包）";
+        File localDownFile = new File(localFilePath);
+        GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, key);
+        // 限流使用的单位是bit/s, 这里设置下载带宽限制为 10MB/s
+        getObjectRequest.setTrafficLimit(80*1024*1024);
+        // 下载文件
+        Download download = transferManager.download(getObjectRequest, localDownFile);
+        // 等待传输结束（如果想同步的等待上传结束，则调用 waitForCompletion）
+        download.waitForCompletion();
+        
+        //.cssg-snippet-body-end
+    }
+    
+    /**
+     * 高级接口下载对象
+     */
     public void transferDownloadObject() throws InterruptedException, IOException, NoSuchAlgorithmException {
         //.cssg-snippet-body-start:[transfer-download-object]
         // Bucket 的命名格式为 BucketName-APPID ，此处填写的存储桶名称必须为此格式
@@ -111,5 +132,29 @@ public class TransferDownloadObject {
         // 使用完成之后销毁 Client，建议 Client 保持为单例
         example.cosClient.shutdown();
     }
+    
+    /**
+     * @deprecated 腾讯云下载图片
+     * @param path
+     * @throws InterruptedException
+     * @throws IOException
+     * @throws NoSuchAlgorithmException
+     */
+    public static void commonPublishDownload(String path)throws InterruptedException, IOException,        NoSuchAlgorithmException{
+    	
+    	   TransferDownloadObject example = new TransferDownloadObject();
+           example.initClient();
+
+           // 高级接口下载对象
+           example.transferDownloadObject(path);
+
+           // .cssg-methods-pragma
+
+           // 使用完成之后销毁 Client，建议 Client 保持为单例
+           example.cosClient.shutdown();
+    	
+    }
+    
+    
 
 }
