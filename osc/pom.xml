@@ -17,6 +17,7 @@
 
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
+        <gpg.executable>gpg2</gpg.executable>
     </properties>
     <dependencies>
     	    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
@@ -165,8 +166,8 @@
                         </goals>
                           
                          <configuration>
-				            <keyname>0xDA2BEF6E</keyname>
-				            <passphraseServerId>0xDA2BEF6E</passphraseServerId>
+				            <keyname>0x8BA9C2F4</keyname>
+				            <passphraseServerId>0x8BA9C2F4</passphraseServerId>
 				          </configuration>
                         
                         
