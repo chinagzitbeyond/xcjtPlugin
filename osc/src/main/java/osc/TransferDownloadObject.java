@@ -102,15 +102,23 @@ public class TransferDownloadObject {
     
     public static void main(String[] args) throws InterruptedException, IOException,        NoSuchAlgorithmException {
     	
-    	commonPublishDownload(
-    			"E:/download/test7.jpg",
-    			"",
-    			Constants.SECRETID,
-    			Constants.SECRETKEY,
-    			Constants.DURATIONSECONDS,
-    			Constants.BUCKETID,
-    			Constants.BUCKETREGION
-    			);
+//    	commonPublishDownload(
+//    			"E:/download/test7.jpg",
+//    			"",
+//    			Constants.SECRETID,
+//    			Constants.SECRETKEY,
+//    			Constants.DURATIONSECONDS,
+//    			Constants.BUCKETID,
+//    			Constants.BUCKETREGION
+//    			);
+    	TransferDownloadObject.commonPublishDownload("D:/QMDownload/test.jpg",
+				"mail.huwing.cn/245mm日用/10片/245白底图.jpg", 
+				"AKIDJRJvGK8fv0sUosfCRP6XLs87pGQJvHMA", 
+				"YppXzB6j5AyVljQqyqRlnY3HDtIPGqAH", 
+				1800,
+				"dwh-1257583875",
+				"ap-guangzhou"
+				);
     }
     
     /**
