@@ -111,14 +111,7 @@ public class TransferDownloadObject {
 //    			Constants.BUCKETID,
 //    			Constants.BUCKETREGION
 //    			);
-    	TransferDownloadObject.commonPublishDownload("D:/QMDownload/test.jpg",
-				"mail.huwing.cn/245mm日用/10片/245白底图.jpg", 
-				"AKIDJRJvGK8fv0sUosfCRP6XLs87pGQJvHMA", 
-				"YppXzB6j5AyVljQqyqRlnY3HDtIPGqAH", 
-				1800,
-				"dwh-1257583875",
-				"ap-guangzhou"
-				);
+    	
     }
     
     /**
