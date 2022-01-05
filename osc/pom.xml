@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.chinagzitbeyond</groupId>
     <artifactId>cos_snippets</artifactId>
-    <version>mvn release:perform</version>
+    <version>cos</version>
     <packaging>pom</packaging>
    
     <name>cos</name>
@@ -90,7 +90,7 @@
     </developers>
     
      <scm>
-     	<tag>yes</tag>
+     	<tag>cos</tag>
         <connection>scm:git:git@github.com:chinagzitbeyond/xcjtPlugin.git</connection>
         <developerConnection>scm:git:git@github.com:chinagzitbeyond/xcjtPlugin.git</developerConnection>
         <url>https://github.com/chinagzitbeyond/xcjtPlugin</url>
