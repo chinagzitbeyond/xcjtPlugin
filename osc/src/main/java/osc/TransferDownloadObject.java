@@ -102,6 +102,7 @@ public class TransferDownloadObject {
     
     public static void main(String[] args) throws InterruptedException, IOException,        NoSuchAlgorithmException {
     	
+<<<<<<< HEAD
     	commonPublishDownload(
     			"E:/download/test7.jpg",
     			"",
@@ -111,6 +112,17 @@ public class TransferDownloadObject {
     			Constants.BUCKETID,
     			Constants.BUCKETREGION
     			);
+=======
+//    	commonPublishDownload(
+//    			"E:/download/test7.jpg",
+//    			"",
+//    			Constants.SECRETID,
+//    			Constants.SECRETKEY,
+//    			Constants.DURATIONSECONDS,
+//    			Constants.BUCKETID,
+//    			Constants.BUCKETREGION
+//    			);
+>>>>>>> 77676466c56a5bb6257f214f980699c47ace6f06
     	
     }
     

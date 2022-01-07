@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.chinagzitbeyond</groupId>
     <artifactId>cos_snippets</artifactId>
-    <version>3.9-SNAPSHOT</version>
+    <version>3.8-SNAPSHOT</version>
     <packaging>pom</packaging>
    
     <name>cos</name>
